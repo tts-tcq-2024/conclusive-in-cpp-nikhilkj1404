@@ -6,16 +6,12 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
 }
 
 Limits getLimits(CoolingType coolingType) {
-    switch(coolingType) {
-        case PASSIVE_COOLING:
-            return {0, 35};
-        case HI_ACTIVE_COOLING:
-            return {0, 45};
-        case MED_ACTIVE_COOLING:
-            return {0, 40};
-        default:
-            return {0, 0};  
-    }
+    static const Limits limits[] = {
+        {0, 35},  // PASSIVE_COOLING
+        {0, 45},  // HI_ACTIVE_COOLING
+        {0, 40}   // MED_ACTIVE_COOLING
+    };
+    return limits[coolingType];
 }
 
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
